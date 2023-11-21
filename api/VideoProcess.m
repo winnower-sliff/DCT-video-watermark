@@ -29,6 +29,8 @@ function VideoProcess(alpha, videopath, watermarkpath, TOTAL)
     while hasFrame(video)
         fprintf("Frame: %d\n", counter);
         counter = counter + 1;
+
+        %%
         % 控制处理的视频总帧数
         if counter > TOTAL
             break;
@@ -43,9 +45,10 @@ function VideoProcess(alpha, videopath, watermarkpath, TOTAL)
         frame = Gray2Rgb(frame); % 转换为 RGB 图像
 %         frame = CutPicture(frame); % 图片裁剪
 %         frame = RotatePicture(frame); % 图片旋转
-        frame = MaxPool(frame);
+        frame = MaxPool(frame);% 最大池图片压缩
 %         frame = Gray2Rgb(frame); % 转换为 RGB 图像
         
+        %%
         % 提取水印
         [MW, NW] = size(watermark); % 获取水印图像大小
         frame = ExtractWatermark(frame, origin, alpha, MW, NW);

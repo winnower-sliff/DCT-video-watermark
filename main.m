@@ -1,11 +1,14 @@
 clc,clear,close all; % 清空命令行和工作区，关闭所有窗口
 
-% 文件目录
-VIDEO_PATH = 'never_gonna_give_you_up.mp4';
-TEST_PATH = 'lena.png';
+% api目录
+addpath api\
+
+% 文件路径
+VIDEO_PATH = 'liar.mp4';
+% TEST_PATH = 'lena.png';
 WATERMARK_PATH = 'seu_logo.jpg';
 
-VideoProcess(1, VIDEO_PATH, WATERMARK_PATH, 500); % 处理视频
+VideoProcess(1, VIDEO_PATH, WATERMARK_PATH, 5); % 处理视频
 
 % imshow(CutPicture(imread(TEST_PATH)));
 % imshow(MaxPool(imread(TEST_PATH)));
