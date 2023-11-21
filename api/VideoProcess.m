@@ -1,5 +1,6 @@
-% 视频处理函数
+
 function VideoProcess(alpha, videopath, watermarkpath, TOTAL)
+% 视频处理函数
     video = VideoReader(videopath);
     watermark = ReadWatermark(watermarkpath);
     
@@ -45,7 +46,7 @@ function VideoProcess(alpha, videopath, watermarkpath, TOTAL)
         frame = Gray2Rgb(frame); % 转换为 RGB 图像
 %         frame = CutPicture(frame); % 图片裁剪
 %         frame = RotatePicture(frame); % 图片旋转
-        frame = MaxPool(frame);% 最大池图片压缩
+%         frame = MaxPool(frame);% 最大池图片压缩
 %         frame = Gray2Rgb(frame); % 转换为 RGB 图像
         
         %%

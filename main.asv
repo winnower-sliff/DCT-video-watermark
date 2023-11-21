@@ -21,31 +21,12 @@ WATERMARK_PATH = 'seu_logo.jpg';
 
 %%
 % 椒盐噪声
-% imshow(AddSaltPepperNoise(imread(TEST_PATH),1));
+imshow(Add(imread(TEST_PATH),1,1,1));
 
-%%
-% 裁剪
-% imshow(CutPicture(imread(TEST_PATH)));
-% sim=ImSimilar(imread(TEST_PATH), CutPicture(imread(TEST_PATH)));
-
-%%
-% 最大池化
+% sim=ImSimilar(imread(TEST_PATH), CutPicture(Arnold(TEST_PATH)));
 % imshow(MaxPool(imread(TEST_PATH)));
 % sim=ImSimilar(imread(TEST_PATH), MaxPool(imread(TEST_PATH)));
 
-%%
-% 随机颜色通道随机区域置零
-% imshow(RandomChannelCover(imread(TEST_PATH),100,100));
-% sim=ImSimilar(imread(TEST_PATH), RandomChannelCover(imread(TEST_PATH),100,100));
-
-%% 
-% 旋转
-% imshow(RotatePicture(imread(TEST_PATH),135));
-% sim=ImSimilar(imread(TEST_PATH), RotatePicture(imread(TEST_PATH),135));
-
-
-%%
-% 测试
 % a = ReadWatermark(TEST_PATH);
 % b = ReadWatermark(WATERMARK_PATH);
 
