@@ -2,6 +2,8 @@
 
 东南大学《网络信息安全与信息隐藏》课程实验
 
+感谢@[oneman233](https://github.com/oneman233/DCT-video-watermark)前辈的无私奉献
+
 ## 嵌入方式
 
 - 离散余弦变换（DCT变换）
