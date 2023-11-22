@@ -1,3 +1,4 @@
+function watermark = ReadWatermark(filepath)
 % ReadWatermark - 从文件中读取水印图片
 %
 %   watermark = ReadWatermark(filepath)
@@ -8,8 +9,6 @@
 %   输出参数:
 %       - watermark: 读取的水印图片矩阵，经过转换为实数值
 %
-
-function watermark = ReadWatermark(filepath)
     % 从文件中读取水印图片
     watermark = imread(filepath);
     

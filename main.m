@@ -10,41 +10,59 @@ VIDEO_PATH = 'liar.mp4';
 TEST_PATH = 'seu_logo.jpg';
 WATERMARK_PATH = 'seu_logo.jpg';
 
-% 处理视频
-% VideoProcess(1, VIDEO_PATH, WATERMARK_PATH, 5);
+% 读取视频&水印
+video_input = VideoReader(VIDEO_PATH);
+video_output = VideoReader(VIDEO_PATH);
+watermark = ReadWatermark(WATERMARK_PATH);
 
-%%
+% 水印加密
+% subplot(1,3,1);imshow(watermark);title('原始图像');
+% watermark=Arnold(watermark,3,5,2);
+% subplot(1,3,2);imshow(watermark);title('加密后的图像');
+% watermark=ReArnold(watermark,3,5,2);
+% subplot(1,3,3);imshow(watermark);title('解密后的图像');
+
+% 水印嵌入
+frames=VideoProcess_input(0.1, video_input, watermark, 10);
+
+% 水印提取
+% 根据本地保存文件提取水印
+% VideoProcess_output(0.1,video_output,watermark);
+% 从嵌入函数返回直接提取水印
+VideoProcess_output(0.1,video_output,watermark,frames);
+
+
 % Arnold置换
 % imshow(Arnold(imread(TEST_PATH),1,1,1));
 % pause(0.5);
 % imshow(ReArnold(Arnold(imread(TEST_PATH),1,1,1),1,1,1));
 
-%%
+
 % 椒盐噪声
 % imshow(AddSaltPepperNoise(imread(TEST_PATH),1));
 
-%%
+
 % 裁剪
 % imshow(CutPicture(imread(TEST_PATH)));
 % sim=ImSimilar(imread(TEST_PATH), CutPicture(imread(TEST_PATH)));
 
-%%
+
 % 最大池化
 % imshow(MaxPool(imread(TEST_PATH)));
 % sim=ImSimilar(imread(TEST_PATH), MaxPool(imread(TEST_PATH)));
 
-%%
+
 % 随机颜色通道随机区域置零
 % imshow(RandomChannelCover(imread(TEST_PATH),100,100));
 % sim=ImSimilar(imread(TEST_PATH), RandomChannelCover(imread(TEST_PATH),100,100));
 
-%% 
+
 % 旋转
 % imshow(RotatePicture(imread(TEST_PATH),135));
 % sim=ImSimilar(imread(TEST_PATH), RotatePicture(imread(TEST_PATH),135));
 
 
-%%
+
 % 测试
 % a = ReadWatermark(TEST_PATH);
 % b = ReadWatermark(WATERMARK_PATH);

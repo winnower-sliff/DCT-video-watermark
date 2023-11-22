@@ -31,7 +31,4 @@ function img = ReArnold(arnold_img, a, b, n)
         % 更新arnold_img，以便进行下一次反向操作
         arnold_img = img;
     end
-    
-    % 转换为8位无符号整数类型
-    img = uint8(img);
 end

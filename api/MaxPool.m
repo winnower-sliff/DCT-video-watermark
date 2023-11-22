@@ -2,6 +2,7 @@ function after_picture = MaxPool(img)
 % MaxPool - 最大池化操作
 %
 %   after_picture = MaxPool(img)
+%   采用 $3X3$ 矩阵对原图片进行最大值池化压缩，多余的行列被废弃
 %
 %   输入参数:
 %       - img: 输入图片矩阵

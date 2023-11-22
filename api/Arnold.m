@@ -32,7 +32,4 @@ function arnold_img = Arnold(img, a, b, n)
         % 更新img，用于下一次迭代
         img = arnold_img;
     end
-    
-    % 转换为8位整数，确保图像矩阵的数据类型正确
-    arnold_img = uint8(arnold_img);
 end
