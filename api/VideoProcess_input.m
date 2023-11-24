@@ -15,6 +15,9 @@ function frames = VideoProcess_input(alpha, video, watermark, TOTAL)
 
     fprintf('Total frames: %d\n', video.NumFrames);
 
+    % 转换为8位无符号整数类型
+    watermark = im2double(watermark);
+
     % 写入附带水印的视频
     writerWW = VideoWriter('video_with_WM', 'MPEG-4');
     % 调整帧率  
@@ -41,7 +44,7 @@ function frames = VideoProcess_input(alpha, video, watermark, TOTAL)
     % imshow(orgin);title('嵌入水印前的图像');
     % figure(1);subplot(1,2,2);
     % imshow(frame);title('嵌入水印后的图像');
-    pause(1)
+    % pause(1)
     close(writerWW);
 end
 
@@ -52,7 +55,7 @@ function dFrame = AddWM(video, watermark, alpha, writerWW)
     frame = Gray2Rgb(frame); % 转换为 RGB 图像
 
     % 添加噪声处理
-    frame = AddGaussianNoise(frame, 0.05); % 添加高斯噪声
+    % frame = AddGaussianNoise(frame, 0.05); % 添加高斯噪声
     % frame = AddSaltPepperNoise(frame, 0.05); % 添加椒盐噪声
     % frame = RandomChannelCover(frame); % 随机颜色通道随机区域置零
     % frame = CutPicture(frame); % 图片裁剪

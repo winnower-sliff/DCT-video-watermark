@@ -1,19 +1,20 @@
-function arnold_img = Arnold(img, a, b, n)
+function arnold_img = Arnold(img, Arnold_key)
 % Arnold - Arnold置换算法
 %
 %   arnold_img = Arnold(img, a, b, n)
 %
 %   输入参数:
 %       - img: 输入图像矩阵
-%       - a: 参数a
-%       - b: 参数b
-%       - n: 迭代次数
+%       - Arnold_key: Arnold密钥，第三个代表迭代次数
 %
 %   输出参数:
 %       - arnold_img: 经过Arnold置换后的图像矩阵
 %
 
     [h, w, c] = size(img);
+    a = Arnold_key(1);
+    b = Arnold_key(2);
+    n = Arnold_key(3);
     N = h;
     arnold_img = zeros(h, w, c);
 

@@ -4,6 +4,7 @@ clc,clear,close all;
 
 % api目录
 addpath api\
+addpath api\AES\
 
 % 文件路径
 VIDEO_PATH = 'liar.mp4';
@@ -16,21 +17,26 @@ video_output = VideoReader(VIDEO_PATH);
 watermark = ReadWatermark(WATERMARK_PATH);
 
 % 水印加密
-% subplot(1,3,1);imshow(watermark);title('原始图像');
-% watermark=Arnold(watermark,3,5,2);
-% subplot(1,3,2);imshow(watermark);title('加密后的图像');
-% watermark=ReArnold(watermark,3,5,2);
-% subplot(1,3,3);imshow(watermark);title('解密后的图像');
+Arnold_key=[1,2,3];
+subplot(2,2,1);imshow(watermark);title('原始图像');
+watermark=Arnold(watermark,Arnold_key);
+subplot(2,2,2);imshow(watermark);title('加密后的图像');
+watermark=ReArnold(watermark,Arnold_key);
+subplot(2,2,3);imshow(watermark);title('解密后的图像');
+watermark=Arnold(watermark,Arnold_key);
 
 % 水印嵌入
-frames=VideoProcess_input(0.1, video_input, watermark, 10);
+frames = VideoProcess_input(1, video_input, watermark, 1);
 
 % 水印提取
 % 根据本地保存文件提取水印
 % VideoProcess_output(0.1,video_output,watermark);
 % 从嵌入函数返回直接提取水印
-VideoProcess_output(0.1,video_output,watermark,frames);
+watermark = VideoProcess_output(1,video_output,watermark,frames);
 
+watermark = im2double(watermark); % 转换为实数值
+watermark=ReArnold(watermark,Arnold_key);
+subplot(2,2,4);imshow(watermark);title('提取解密后的图像');
 
 % Arnold置换
 % imshow(Arnold(imread(TEST_PATH),1,1,1));

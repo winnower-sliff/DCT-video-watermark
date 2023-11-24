@@ -1,18 +1,20 @@
-function img = ReArnold(arnold_img, a, b, n)
+function img = ReArnold(arnold_img, Arnold_key)
 % ReArnold - 对Arnold变换后的图像进行逆操作
 %
 %   img = ReArnold(arnold_img, a, b, n)
 %
 %   输入参数:
 %       - arnold_img: 经过Arnold变换的图像矩阵
-%       - a, b: Arnold变换的参数
-%       - n: 反向操作的次数
+%       - Arnold_key: Arnold密钥，第三个代表反向操作的次数
 %
 %   输出参数:
 %       - img: 反向操作后的图像矩阵
 %
 
     [h, w, c] = size(arnold_img);
+    a = Arnold_key(1);
+    b = Arnold_key(2);
+    n = Arnold_key(3);
     img = zeros(h, w, c);
     N = h;
 

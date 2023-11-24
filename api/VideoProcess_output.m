@@ -1,4 +1,4 @@
-function VideoProcess_output(alpha, video, watermark, frames)
+function extractedWatermark = VideoProcess_output(alpha, video, watermark, frames)
 % VideoProcess_output - 处理视频并提取水印
 %
 %   VideoProcess_output(alpha, video, watermark, frames)
@@ -10,7 +10,7 @@ function VideoProcess_output(alpha, video, watermark, frames)
 %       - frames: (可选) 双精度视频的所有帧，用于避免重复读取
 %
 %   输出参数:
-%       无
+%       - extractedWatermark: 提取出的水印图像
 %
 
     % 检查输入参数数量
@@ -68,10 +68,10 @@ function VideoProcess_output(alpha, video, watermark, frames)
         % 载体图片展示
         % h=figure(1);
         % set(h,'name','My Title','Numbertitle','off');
-        subplot(2,2,1);imshow(origin);title('原始视频帧');
-        subplot(2,2,2);imshow(frame_with_WM);title('添加水印后的视频帧');
-        subplot(2,2,3);imshow(watermark);title("原始水印");
-        subplot(2,2,4);imshow(frame);title("提取出来的水印");
+        % subplot(2,2,1);imshow(origin);title('原始视频帧');
+        % subplot(2,2,2);imshow(frame_with_WM);title('添加水印后的视频帧');
+        % subplot(2,2,3);imshow(watermark);title("原始水印");
+        % subplot(2,2,4);imshow(frame);title("提取出来的水印");
         watermark = im2uint8(watermark);
         psnr1=psnr(watermark, frame);
         fprintf("PSNR = %.2f\n",psnr1);
@@ -82,4 +82,5 @@ function VideoProcess_output(alpha, video, watermark, frames)
         writeVideo(writerEW, frame);
     end
     close(writerEW);
+    extractedWatermark = frame;
 end
