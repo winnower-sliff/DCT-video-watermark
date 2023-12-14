@@ -64,24 +64,24 @@ if any (w < 0 | w > 255)
 end
 
 % Display headline if requested
-if verbose_mode
-    disp (' ')
-    disp ('********************************************')
-    disp ('*                                          *')
-    disp ('*               C I P H E R                *')
-    disp ('*                                          *')
-    disp ('********************************************')
-    disp (' ')
-end
+% if verbose_mode
+%     disp (' ')
+%     disp ('********************************************')
+%     disp ('*                                          *')
+%     disp ('*               C I P H E R                *')
+%     disp ('*                                          *')
+%     disp ('********************************************')
+%     disp (' ')
+% end
 
 % Copy the 16 elements of the input vector 
 % column-wise into the 4 x 4 state matrix
 state = reshape (plaintext, 4, 4);
 
 % Display intermediate result if requested
-if verbose_mode
-    disp_hex ('Initial state :                  ', state)
-end
+% if verbose_mode
+%     disp_hex ('Initial state :                  ', state)
+% end
    
 % Copy the first 4 rows (4 x 4 elements) of the expanded key 
 % into the current round key.
@@ -89,9 +89,9 @@ end
 round_key = (w(1:4, :))';
 
 % Display intermediate result if requested
-if verbose_mode
-    disp_hex ('Initial round key :              ', round_key)
-end
+% if verbose_mode
+%     disp_hex ('Initial round key :              ', round_key)
+% end
 
 % Add (xor) the current round key (matrix) to the state (matrix)
 state = add_round_key (state, round_key);
@@ -100,42 +100,42 @@ state = add_round_key (state, round_key);
 for i_round = 1 : 9
     
     % Display intermediate result if requested
-    if verbose_mode
-        disp_hex (['State at start of round ', num2str(i_round),' :      '], state)
-    end
+    % if verbose_mode
+    %     disp_hex (['State at start of round ', num2str(i_round),' :      '], state)
+    % end
    
     % Substitute all 16 elements of the state matrix
     % by shoving them through the S-box
     state = sub_bytes (state, s_box);
     
     % Display intermediate result if requested
-    if verbose_mode
-        disp_hex ('After sub_bytes :                ', state)
-    end
+    % if verbose_mode
+    %     disp_hex ('After sub_bytes :                ', state)
+    % end
    
     % Cyclically shift the last three rows of the state matrix
     state = shift_rows (state);
     
     % Display intermediate result if requested
-    if verbose_mode
-        disp_hex ('After shift_rows :               ', state)
-    end
+    % if verbose_mode
+    %     disp_hex ('After shift_rows :               ', state)
+    % end
    
     % Transform the columns of the state matrix via a four-term polynomial
     state = mix_columns (state, poly_mat);
     
     % Display intermediate result if requested
-    if verbose_mode
-        disp_hex ('After mix_columns :              ', state)
-    end
+    % if verbose_mode
+    %     disp_hex ('After mix_columns :              ', state)
+    % end
    
     % Extract the current round key (4 x 4 matrix) from the expanded key
     round_key = (w((1:4) + 4*i_round, :))';
 
     % Display intermediate result if requested
-    if verbose_mode
-        disp_hex ('Round key :                      ', round_key)
-    end
+    % if verbose_mode
+    %     disp_hex ('Round key :                      ', round_key)
+    % end
    
     % Add (XOR) the current round key (matrix) to the state (matrix)
     state = add_round_key (state, round_key);
@@ -143,42 +143,42 @@ for i_round = 1 : 9
 end
 
 % Display intermediate result if requested
-if verbose_mode
-    disp_hex ('State at start of final round :  ', state)
-end
+% if verbose_mode
+%     disp_hex ('State at start of final round :  ', state)
+% end
    
 % Substitute all 16 elements of the state matrix
 % by shoving them through the S-box
 state = sub_bytes (state, s_box);
 
 % Display intermediate result if requested
-if verbose_mode
-    disp_hex ('After sub_bytes :                ', state)
-end
+% if verbose_mode
+%     disp_hex ('After sub_bytes :                ', state)
+% end
 
 % Cyclically shift the last three rows of the state matrix
 state = shift_rows (state);
     
 % Display intermediate result if requested
-if verbose_mode
-    disp_hex ('After shift_rows :               ', state)
-end
+% if verbose_mode
+%     disp_hex ('After shift_rows :               ', state)
+% end
   
 % Extract the last round key (4 x 4 matrix) from the expanded key
 round_key = (w(41:44, :))';
 
 % Display intermediate result if requested
-if verbose_mode
-    disp_hex ('Round key :                      ', round_key)
-end
+% if verbose_mode
+%     disp_hex ('Round key :                      ', round_key)
+% end
    
 % Add (xor) the current round key (matrix) to the state (matrix)
 state = add_round_key (state, round_key);
     
 % Display intermediate result if requested
-if verbose_mode
-    disp_hex ('Final state :                    ', state)
-end
+% if verbose_mode
+%     disp_hex ('Final state :                    ', state)
+% end
    
 % reshape the 4 x 4 state matrix into a 16 element row vector
 ciphertext = reshape (state, 1, 16);
